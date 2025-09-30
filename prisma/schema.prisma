@@ -1,0 +1,215 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  passwordHash  String?   // For credentials-based authentication
+  role          UserRole  @default(VIEWER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts Account[]
+  sessions Session[]
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model Author {
+  id               String             @id @default(cuid())
+  name             String
+  title            String
+  bio              String
+  email            String             @unique
+  linkedinUrl      String?
+  profileImage     String?
+  isLeadership     Boolean            @default(false)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  
+  // Relationships
+  articles         ArticleAuthor[]
+  researchDivisions AuthorDivision[]
+
+  @@map("authors")
+}
+
+model ResearchDivision {
+  id           String   @id @default(cuid())
+  name         String   @unique
+  description  String
+  sdgAlignment String   // JSON string of SDG numbers/names
+  color        String   // Hex color code
+  icon         String   // Icon identifier
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relationships
+  articles     Article[]
+  authors      AuthorDivision[]
+
+  @@map("research_divisions")
+}
+
+model Article {
+  id             String        @id @default(cuid())
+  title          String
+  slug           String        @unique
+  content        String
+  summary        String
+  tags           String        // JSON string of tags
+  status         ArticleStatus @default(DRAFT)
+  publishedAt    DateTime?
+  scheduledFor   DateTime?
+  readTime       Int           // Estimated read time in minutes
+  downloadUrl    String?       // URL to downloadable PDF/document
+  
+  // SEO fields
+  seoTitle       String?
+  seoDescription String?
+  seoKeywords    String?       // JSON string of keywords
+  
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  // Foreign keys
+  divisionId     String
+  
+  // Relationships
+  division       ResearchDivision @relation(fields: [divisionId], references: [id])
+  authors        ArticleAuthor[]
+  mediaFiles     ArticleMedia[]
+
+  @@map("articles")
+}
+
+model MediaFile {
+  id          String   @id @default(cuid())
+  filename    String
+  originalName String
+  mimeType    String
+  size        Int      // File size in bytes
+  url         String   // S3 or storage URL
+  alt         String?  // Alt text for accessibility
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relationships
+  articles    ArticleMedia[]
+
+  @@map("media_files")
+}
+
+// Junction tables for many-to-many relationships
+
+model ArticleAuthor {
+  articleId String
+  authorId  String
+  order     Int     @default(0) // For ordering multiple authors
+
+  article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  author    Author  @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@id([articleId, authorId])
+  @@map("article_authors")
+}
+
+model AuthorDivision {
+  authorId   String
+  divisionId String
+
+  author   Author           @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  division ResearchDivision @relation(fields: [divisionId], references: [id], onDelete: Cascade)
+
+  @@id([authorId, divisionId])
+  @@map("author_divisions")
+}
+
+model ArticleMedia {
+  articleId   String
+  mediaFileId String
+  order       Int     @default(0) // For ordering media within articles
+
+  article   Article   @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  mediaFile MediaFile @relation(fields: [mediaFileId], references: [id], onDelete: Cascade)
+
+  @@id([articleId, mediaFileId])
+  @@map("article_media")
+}
+
+// Enums
+
+enum UserRole {
+  ADMIN
+  EDITOR
+  VIEWER
+}
+
+enum ArticleStatus {
+  DRAFT
+  PUBLISHED
+  SCHEDULED
+  ARCHIVED
+}
+
+model SiteSettings {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String   // JSON string for complex values
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("site_settings")
+}

@@ -1,0 +1,366 @@
+@import "tailwindcss";
+@import "highlight.js/styles/github.css";
+
+@theme {
+  --color-ngsrn-blue: #003366;
+  --color-ngsrn-green: #2E8B57;
+  --color-ngsrn-gold: #FFD700;
+  --color-background: #ffffff;
+  --color-foreground: #1f2937;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-merriweather), Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+/* NGSRN Typography Styles */
+.ngsrn-heading {
+  @apply font-serif font-bold text-ngsrn-blue;
+}
+
+.ngsrn-subheading {
+  @apply font-sans font-semibold text-ngsrn-green;
+}
+
+.ngsrn-body {
+  @apply font-sans text-gray-700 leading-relaxed;
+}
+
+.ngsrn-accent {
+  @apply text-ngsrn-gold font-medium;
+}
+
+/* Article Content Styles */
+.article-content {
+  @apply text-gray-800 leading-relaxed;
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+  @apply font-serif font-bold text-ngsrn-blue mt-8 mb-4 scroll-mt-20;
+}
+
+.article-content h1 { @apply text-3xl; }
+.article-content h2 { @apply text-2xl; }
+.article-content h3 { @apply text-xl; }
+.article-content h4 { @apply text-lg; }
+.article-content h5 { @apply text-base; }
+.article-content h6 { @apply text-sm; }
+
+.article-content p {
+  @apply mb-4;
+}
+
+.article-content a {
+  @apply text-ngsrn-green hover:text-ngsrn-blue transition-colors underline;
+}
+
+.article-content ul,
+.article-content ol {
+  @apply mb-4 pl-6;
+}
+
+.article-content li {
+  @apply mb-2;
+}
+
+.article-content blockquote {
+  @apply border-l-4 border-ngsrn-green bg-gray-50 p-4 my-6 italic rounded-r-lg;
+}
+
+.article-content code {
+  @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono;
+}
+
+.article-content pre {
+  @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-6;
+}
+
+.article-content img {
+  @apply rounded-lg shadow-md my-6 max-w-full h-auto;
+}
+
+.article-content table {
+  @apply w-full border-collapse border border-gray-300 my-6;
+}
+
+.article-content th,
+.article-content td {
+  @apply border border-gray-300 px-4 py-2 text-left;
+}
+
+.article-content th {
+  @apply bg-gray-50 font-semibold;
+}
+
+/* Line clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-in-out;
+}
+/* AI Assistant Animations */
+@keyframes ai-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes ai-bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+.ai-pulse {
+  animation: ai-pulse 2s infinite;
+}
+
+.ai-bounce {
+  animation: ai-bounce 2s infinite;
+}
+
+/* AI Chat Message Animations */
+@keyframes ai-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ai-message-enter {
+  animation: ai-message-in 0.3s ease-out;
+}
+
+/* Text Selection Styles for AI */
+.article-content ::selection {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: inherit;
+}
+
+.article-content ::-moz-selection {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: inherit;
+}
+
+/* AI Assistant Mobile Optimizations */
+@media (max-width: 768px) {
+  .ai-assistant-mobile {
+    position: fixed;
+    inset: 1rem;
+    top: 5rem;
+    z-index: 50;
+  }
+}
+
+/* Smooth transitions for AI components */
+.ai-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Loading dots animation */
+@keyframes ai-loading-dots {
+  0%, 20% {
+    color: rgba(0, 0, 0, 0.4);
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0.2), 0.5em 0 0 rgba(0, 0, 0, 0.2);
+  }
+  40% {
+    color: rgba(0, 0, 0, 1);
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0.4), 0.5em 0 0 rgba(0, 0, 0, 0.2);
+  }
+  60% {
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 1), 0.5em 0 0 rgba(0, 0, 0, 0.4);
+  }
+  80%, 100% {
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 1), 0.5em 0 0 rgba(0, 0, 0, 1);
+  }
+}
+
+.ai-loading-dots::before {
+  content: '•••';
+  animation: ai-loading-dots 1.4s infinite;
+}
+
+/* Custom scrollbar for AI chat */
+.ai-chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ai-chat-messages::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.ai-chat-messages::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.ai-chat-messages::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Accessibility Styles */
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus styles for better visibility */
+.focus-visible\:ring-2:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+
+/* High contrast mode support */
+.high-contrast {
+  --tw-text-opacity: 1;
+  --tw-bg-opacity: 1;
+}
+
+.high-contrast * {
+  border-color: currentColor !important;
+}
+
+.high-contrast a {
+  text-decoration: underline !important;
+}
+
+.high-contrast button {
+  border: 2px solid currentColor !important;
+}
+
+/* Reduced motion support */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Font size preferences */
+.font-size-normal {
+  font-size: 100%;
+}
+
+.font-size-large {
+  font-size: 110%;
+}
+
+.font-size-larger {
+  font-size: 120%;
+}
+
+/* Skip link styles */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Ensure minimum touch target sizes */
+@media (pointer: coarse) {
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  a[role="button"],
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Improve text readability */
+body {
+  line-height: 1.6;
+  word-spacing: 0.1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.3;
+}
+
+/* Focus indicators for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Ensure sufficient color contrast */
+::selection {
+  background-color: #3b82f6;
+  color: white;
+}
+
+/* Print styles for accessibility */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+}

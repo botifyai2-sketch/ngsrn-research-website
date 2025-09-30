@@ -1,0 +1,141 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_VERSION: '20'
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ngsrn_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ngsrn-website/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ngsrn-website
+        run: npm ci
+
+      - name: Setup test environment
+        working-directory: ngsrn-website
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/ngsrn_test
+        run: |
+          npx prisma generate
+          npx prisma db push
+
+      - name: Run type checking
+        working-directory: ngsrn-website
+        run: npm run type-check
+
+      - name: Run linting
+        working-directory: ngsrn-website
+        run: npm run lint
+
+      - name: Run unit tests
+        working-directory: ngsrn-website
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/ngsrn_test
+        run: npm run test:unit
+
+      - name: Run integration tests
+        working-directory: ngsrn-website
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/ngsrn_test
+        run: npm run test:integration
+
+      - name: Build application
+        working-directory: ngsrn-website
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/ngsrn_test
+        run: npm run build
+
+  deploy-preview:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'pull_request'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        working-directory: ngsrn-website
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        working-directory: ngsrn-website
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy Project Artifacts to Vercel
+        working-directory: ngsrn-website
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+
+  deploy-production:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        working-directory: ngsrn-website
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        working-directory: ngsrn-website
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy Project Artifacts to Vercel
+        working-directory: ngsrn-website
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Run E2E tests against production
+        working-directory: ngsrn-website
+        env:
+          PLAYWRIGHT_BASE_URL: ${{ secrets.PRODUCTION_URL }}
+        run: |
+          npx playwright install --with-deps
+          npm run test:e2e
+
+      - name: Run Lighthouse CI
+        working-directory: ngsrn-website
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+        run: npm run test:performance
