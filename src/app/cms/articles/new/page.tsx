@@ -26,10 +26,16 @@ export default async function NewArticlePage() {
     })
   ])
 
+  // Transform divisions to match expected type
+  const transformedDivisions = divisions.map(division => ({
+    ...division,
+    sdgAlignment: typeof division.sdgAlignment === 'string' ? JSON.parse(division.sdgAlignment || '[]') : division.sdgAlignment,
+  }));
+
   return (
     <div>
       <ArticleEditor 
-        divisions={divisions}
+        divisions={transformedDivisions}
         authors={authors}
       />
     </div>
