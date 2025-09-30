@@ -11,8 +11,13 @@ export default async function ArticlesPage() {
     redirect('/auth/signin')
   }
 
-  // Fetch initial articles data
+  // Fetch initial articles data (excluding archived articles)
   const articles = await prisma.article.findMany({
+    where: {
+      status: {
+        not: 'ARCHIVED'
+      }
+    },
     include: {
       division: true,
       authors: {
@@ -26,5 +31,5 @@ export default async function ArticlesPage() {
     }
   })
 
-  return <ArticleManager initialArticles={articles} />
+  return <ArticleManager initialArticles={articles as any} />
 }
