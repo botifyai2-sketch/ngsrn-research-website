@@ -1,0 +1,73 @@
+{
+  "reportId": "upload-verification-2025-10-01T05-17-02-058Z-ny0tyf",
+  "timestamp": "2025-10-01T05:17:02.063Z",
+  "projectPath": "C:\\Users\\Pc\\Downloads\\NextGen\\ngsrn-website",
+  "verification": {
+    "success": false,
+    "repositoryUrl": "https://github.com/example/ngsrn-website.git",
+    "commitHash": "1be5a17f233ba2a01f76fd47340b861c42cb524c",
+    "filesUploaded": 0,
+    "totalFiles": 0,
+    "remoteStatus": {
+      "connected": false,
+      "error": "spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"
+    },
+    "branchInfo": {
+      "current": "main",
+      "upstream": null
+    },
+    "lastCommit": {
+      "message": "Initial commit: NGSRN Research Website",
+      "author": "NGSRN Developer <ngsrn@example.com>",
+      "date": "2025-09-30 15:54:22 +0100"
+    },
+    "warnings": [],
+    "errors": [
+      "Cannot connect to remote repository"
+    ]
+  },
+  "summary": {
+    "timestamp": "2025-10-01T05:16:51.655Z",
+    "status": "FAILED",
+    "repository": {
+      "url": "https://github.com/example/ngsrn-website.git",
+      "branch": "main",
+      "remoteTracking": null
+    },
+    "commit": {
+      "hash": "1be5a17f233ba2a01f76fd47340b861c42cb524c",
+      "shortHash": "1be5a17f",
+      "message": "Initial commit: NGSRN Research Website",
+      "author": "NGSRN Developer <ngsrn@example.com>",
+      "date": "2025-09-30 15:54:22 +0100"
+    },
+    "files": {
+      "uploaded": 0,
+      "total": 0,
+      "uploadPercentage": 0
+    },
+    "statistics": null,
+    "warnings": [],
+    "errors": [
+      "Cannot connect to remote repository"
+    ]
+  },
+  "accessInfo": {
+    "url": "https://github.com/example/ngsrn-website.git",
+    "accessible": false,
+    "responseTime": 10023,
+    "lastChecked": "2025-10-01T05:16:52.032Z",
+    "branches": [],
+    "tags": [],
+    "remoteCommits": 0
+  },
+  "recommendations": [
+    "Review .gitignore file to ensure all necessary files are being tracked",
+    "Set up upstream tracking for your branch: git branch --set-upstream-to=origin/main"
+  ],
+  "nextSteps": [
+    "Review and resolve any errors listed above",
+    "Ensure proper Git configuration and remote setup",
+    "Retry the upload process after fixing issues"
+  ]
+}

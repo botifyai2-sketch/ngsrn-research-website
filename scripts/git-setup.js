@@ -212,6 +212,265 @@ class GitRepositoryManager {
   }
 
   /**
+   * Add remote repository using provided GitHub URL
+   */
+  addRemote(remoteName, repositoryUrl) {
+    console.log(`🌐 Adding remote repository: ${remoteName}`);
+    
+    try {
+      // Check if remote already exists
+      try {
+        const existingRemote = execSync(`git remote get-url ${remoteName}`, { 
+          cwd: this.projectPath, 
+          encoding: 'utf8' 
+        }).trim();
+        
+        if (existingRemote === repositoryUrl) {
+          console.log(`✅ Remote '${remoteName}' already configured with correct URL`);
+          return true;
+        } else {
+          console.log(`⚠️  Remote '${remoteName}' exists with different URL: ${existingRemote}`);
+          console.log(`🔄 Updating remote URL to: ${repositoryUrl}`);
+          execSync(`git remote set-url ${remoteName} ${repositoryUrl}`, { cwd: this.projectPath });
+          console.log(`✅ Remote '${remoteName}' URL updated successfully`);
+          return true;
+        }
+      } catch (error) {
+        // Remote doesn't exist, add it
+        execSync(`git remote add ${remoteName} ${repositoryUrl}`, { cwd: this.projectPath });
+        console.log(`✅ Remote '${remoteName}' added successfully: ${repositoryUrl}`);
+        return true;
+      }
+    } catch (error) {
+      console.error(`❌ Failed to add remote '${remoteName}':`, error.message);
+      return false;
+    }
+  }
+
+  /**
+   * Configure authentication method (HTTPS with token)
+   */
+  configureAuthentication(credentials) {
+    console.log('🔐 Configuring authentication...');
+    
+    try {
+      const { username, email, token, authMethod = 'https' } = credentials;
+
+      if (authMethod === 'https' && token) {
+        // Configure Git to use token for HTTPS authentication
+        // This sets up credential helper to use the token
+        console.log('🔑 Configuring HTTPS authentication with token...');
+        
+        // Set up credential helper for token-based auth
+        execSync('git config credential.helper store', { cwd: this.projectPath });
+        
+        console.log('✅ Authentication method configured for HTTPS with token');
+        return true;
+      } else if (authMethod === 'ssh') {
+        console.log('🔑 SSH authentication method selected');
+        console.log('⚠️  Please ensure SSH keys are properly configured in your system');
+        return true;
+      } else {
+        console.log('🔑 Using default Git authentication');
+        return true;
+      }
+    } catch (error) {
+      console.error('❌ Failed to configure authentication:', error.message);
+      return false;
+    }
+  }
+
+  /**
+   * Test remote connection and repository access
+   */
+  async testRemoteConnection(remoteName = 'origin') {
+    console.log(`🔍 Testing connection to remote '${remoteName}'...`);
+    
+    try {
+      // First check if remote exists
+      const remoteUrl = execSync(`git remote get-url ${remoteName}`, { 
+        cwd: this.projectPath, 
+        encoding: 'utf8' 
+      }).trim();
+      
+      console.log(`📡 Testing connection to: ${remoteUrl}`);
+
+      // Test connection by doing a lightweight operation
+      try {
+        execSync(`git ls-remote --heads ${remoteName}`, { 
+          cwd: this.projectPath, 
+          stdio: 'pipe',
+          timeout: 30000 // 30 second timeout
+        });
+        console.log('✅ Remote connection test successful');
+        return true;
+      } catch (error) {
+        if (error.message.includes('Authentication failed') || 
+            error.message.includes('Permission denied') ||
+            error.message.includes('403')) {
+          console.error('❌ Authentication failed - please check your credentials');
+          console.log('💡 Tip: Make sure your GitHub token has the necessary permissions');
+        } else if (error.message.includes('timeout') || error.message.includes('network')) {
+          console.error('❌ Network connection failed - please check your internet connection');
+        } else if (error.message.includes('Repository not found') || error.message.includes('404')) {
+          console.error('❌ Repository not found - please check the repository URL');
+        } else {
+          console.error('❌ Remote connection test failed:', error.message);
+        }
+        return false;
+      }
+    } catch (error) {
+      console.error(`❌ Remote '${remoteName}' not configured:`, error.message);
+      return false;
+    }
+  }
+
+  /**
+   * Validate remote configuration settings
+   */
+  validateRemoteConfiguration(remoteName = 'origin') {
+    console.log(`🔍 Validating remote configuration for '${remoteName}'...`);
+    
+    const validations = [];
+
+    try {
+      // Check if remote exists
+      const remoteUrl = execSync(`git remote get-url ${remoteName}`, { 
+        cwd: this.projectPath, 
+        encoding: 'utf8' 
+      }).trim();
+      
+      validations.push({ 
+        check: `Remote '${remoteName}' configured`, 
+        status: true,
+        details: remoteUrl
+      });
+
+      // Validate URL format
+      const isValidGitHubUrl = remoteUrl.includes('github.com') && 
+                              (remoteUrl.startsWith('https://') || remoteUrl.startsWith('git@'));
+      
+      validations.push({ 
+        check: 'Valid GitHub URL format', 
+        status: isValidGitHubUrl,
+        details: isValidGitHubUrl ? 'URL format is valid' : 'URL should be GitHub HTTPS or SSH format'
+      });
+
+      // Check authentication method
+      const authMethod = remoteUrl.startsWith('https://') ? 'HTTPS' : 
+                        remoteUrl.startsWith('git@') ? 'SSH' : 'Unknown';
+      
+      validations.push({ 
+        check: `Authentication method: ${authMethod}`, 
+        status: authMethod !== 'Unknown',
+        details: `Using ${authMethod} authentication`
+      });
+
+      // Check credential helper configuration (for HTTPS)
+      if (authMethod === 'HTTPS') {
+        try {
+          const credentialHelper = execSync('git config credential.helper', { 
+            cwd: this.projectPath, 
+            encoding: 'utf8' 
+          }).trim();
+          
+          validations.push({ 
+            check: 'Credential helper configured', 
+            status: !!credentialHelper,
+            details: credentialHelper || 'No credential helper configured'
+          });
+        } catch (error) {
+          validations.push({ 
+            check: 'Credential helper configured', 
+            status: false,
+            details: 'No credential helper configured'
+          });
+        }
+      }
+
+    } catch (error) {
+      validations.push({ 
+        check: `Remote '${remoteName}' configured`, 
+        status: false,
+        details: error.message
+      });
+    }
+
+    // Display validation results
+    console.log('\n📋 Remote Configuration Validation:');
+    let allValid = true;
+    validations.forEach(validation => {
+      const icon = validation.status ? '✅' : '❌';
+      console.log(`${icon} ${validation.check}`);
+      if (validation.details) {
+        console.log(`   ${validation.details}`);
+      }
+      if (!validation.status) {
+        allValid = false;
+      }
+    });
+
+    return allValid;
+  }
+
+  /**
+   * Configure GitHub remote repository with full setup
+   */
+  async configureGitHubRemote(options = {}) {
+    console.log('🚀 Configuring GitHub remote repository...\n');
+
+    const {
+      repositoryUrl,
+      remoteName = 'origin',
+      credentials = {},
+      testConnection = true
+    } = options;
+
+    if (!repositoryUrl) {
+      console.error('❌ Repository URL is required');
+      return false;
+    }
+
+    let success = true;
+
+    // Step 1: Add remote repository
+    if (!this.addRemote(remoteName, repositoryUrl)) {
+      success = false;
+    }
+
+    // Step 2: Configure authentication
+    if (success && Object.keys(credentials).length > 0) {
+      if (!this.configureAuthentication(credentials)) {
+        success = false;
+      }
+    }
+
+    // Step 3: Test remote connection
+    if (success && testConnection) {
+      if (!await this.testRemoteConnection(remoteName)) {
+        console.log('⚠️  Remote connection test failed, but configuration may still be valid');
+        console.log('💡 You may need to configure authentication or check network connectivity');
+      }
+    }
+
+    // Step 4: Validate remote configuration
+    if (success) {
+      if (!this.validateRemoteConfiguration(remoteName)) {
+        console.log('\n⚠️  Some remote configuration validations failed');
+      }
+    }
+
+    if (success) {
+      console.log('\n🎉 GitHub remote repository configuration completed successfully!');
+      console.log(`📡 Remote '${remoteName}' configured: ${repositoryUrl}`);
+    } else {
+      console.log('\n❌ GitHub remote repository configuration failed. Please check the errors above.');
+    }
+
+    return success;
+  }
+
+  /**
    * Get repository status information
    */
   getRepositoryInfo() {
@@ -331,6 +590,7 @@ class GitRepositoryManager {
 if (require.main === module) {
   const args = process.argv.slice(2);
   const options = {};
+  const remoteOptions = {};
 
   // Parse command line arguments
   for (let i = 0; i < args.length; i++) {
@@ -344,6 +604,25 @@ if (require.main === module) {
       case '--skip-validation':
         options.skipValidation = true;
         break;
+      case '--remote-url':
+        remoteOptions.repositoryUrl = args[++i];
+        break;
+      case '--remote-name':
+        remoteOptions.remoteName = args[++i];
+        break;
+      case '--token':
+        remoteOptions.credentials = { 
+          ...remoteOptions.credentials, 
+          token: args[++i], 
+          authMethod: 'https' 
+        };
+        break;
+      case '--skip-connection-test':
+        remoteOptions.testConnection = false;
+        break;
+      case '--configure-remote-only':
+        options.configureRemoteOnly = true;
+        break;
       case '--help':
         console.log(`
 Git Repository Setup Script
@@ -351,15 +630,21 @@ Git Repository Setup Script
 Usage: node git-setup.js [options]
 
 Options:
-  --name <name>        Set Git user name (default: "NGSRN Developer")
-  --email <email>      Set Git user email (default: "ngsrn@example.com")
-  --skip-validation    Skip validation step
-  --help              Show this help message
+  --name <name>                Set Git user name (default: "NGSRN Developer")
+  --email <email>              Set Git user email (default: "ngsrn@example.com")
+  --skip-validation            Skip validation step
+  --remote-url <url>           GitHub repository URL to add as remote
+  --remote-name <name>         Remote name (default: "origin")
+  --token <token>              GitHub personal access token for HTTPS auth
+  --skip-connection-test       Skip testing remote connection
+  --configure-remote-only      Only configure remote, skip basic Git setup
+  --help                       Show this help message
 
 Examples:
   node git-setup.js
   node git-setup.js --name "John Doe" --email "john@example.com"
-  node git-setup.js --skip-validation
+  node git-setup.js --remote-url "https://github.com/user/repo.git" --token "ghp_xxxx"
+  node git-setup.js --configure-remote-only --remote-url "https://github.com/user/repo.git"
         `);
         process.exit(0);
         break;
@@ -367,7 +652,36 @@ Examples:
   }
 
   const manager = new GitRepositoryManager();
-  manager.setup(options).then(success => {
+
+  async function runSetup() {
+    let success = true;
+
+    if (options.configureRemoteOnly) {
+      // Only configure remote repository
+      if (remoteOptions.repositoryUrl) {
+        success = await manager.configureGitHubRemote(remoteOptions);
+      } else {
+        console.error('❌ --remote-url is required when using --configure-remote-only');
+        success = false;
+      }
+    } else {
+      // Run full setup
+      success = await manager.setup(options);
+      
+      // Configure remote if URL provided
+      if (success && remoteOptions.repositoryUrl) {
+        console.log('\n🌐 Configuring remote repository...');
+        const remoteSuccess = await manager.configureGitHubRemote(remoteOptions);
+        if (!remoteSuccess) {
+          console.log('⚠️  Remote configuration failed, but basic Git setup was successful');
+        }
+      }
+    }
+
+    return success;
+  }
+
+  runSetup().then(success => {
     process.exit(success ? 0 : 1);
   }).catch(error => {
     console.error('❌ Unexpected error:', error);

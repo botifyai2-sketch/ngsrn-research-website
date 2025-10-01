@@ -66,6 +66,30 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to view the application.
 
+## GitHub Upload
+
+To upload your NGSRN website project to GitHub:
+
+### Quick Upload (Interactive)
+```bash
+# Interactive upload with guided setup
+node scripts/interactive-github-upload.js
+```
+
+### Automated Upload
+```bash
+# Direct upload with parameters
+node scripts/github-upload-complete.js --repository-url https://github.com/username/ngsrn-website.git
+```
+
+### Prerequisites for GitHub Upload
+- GitHub repository created
+- Personal Access Token with `repo` scope
+- Git configured with your credentials
+
+📖 **Complete Guide**: See [GITHUB_UPLOAD_GUIDE.md](./GITHUB_UPLOAD_GUIDE.md) for detailed instructions  
+⚡ **Quick Reference**: See [GITHUB_UPLOAD_QUICK_REFERENCE.md](./GITHUB_UPLOAD_QUICK_REFERENCE.md) for commands
+
 ## Project Structure
 
 ```
