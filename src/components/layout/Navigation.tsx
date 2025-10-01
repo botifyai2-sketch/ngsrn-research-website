@@ -44,6 +44,28 @@ const Navigation: React.FC<NavigationProps> = ({ isAuthenticated, userRole }) =>
       href: PAGE_ROUTES.search,
     },
     {
+      label: 'About',
+      href: '/about',
+      children: [
+        {
+          label: 'Our Mission',
+          href: '/#mission',
+        },
+        {
+          label: 'Privacy Policy',
+          href: '/legal/privacy',
+        },
+        {
+          label: 'Terms of Service',
+          href: '/legal/terms',
+        },
+        {
+          label: 'Usage Guidelines',
+          href: '/legal/usage-guidelines',
+        },
+      ],
+    },
+    {
       label: 'Contact',
       href: PAGE_ROUTES.contact,
     },

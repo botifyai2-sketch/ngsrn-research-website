@@ -30,16 +30,11 @@ export default function Logo({
 }: LogoProps) {
   const logoContent = (
     <div className={`flex items-center space-x-3 ${className}`}>
-      {/* NGSRN Logo Image */}
-      <div className={`${sizeClasses[size]} flex items-center justify-center flex-shrink-0`}>
-        <Image
-          src="/logo.png"
-          alt="NGSRN Logo"
-          width={size === 'sm' ? 32 : size === 'md' ? 48 : 64}
-          height={size === 'sm' ? 32 : size === 'md' ? 48 : 64}
-          className="rounded-lg object-contain"
-          priority={size === 'lg'}
-        />
+      {/* NGSRN Logo - Simple text-based design */}
+      <div className={`${sizeClasses[size]} flex items-center justify-center flex-shrink-0 bg-ngsrn-primary text-white rounded-lg font-bold`}>
+        <span className={size === 'sm' ? 'text-xs' : size === 'md' ? 'text-sm' : 'text-base'}>
+          NG
+        </span>
       </div>
       
       {showText && (

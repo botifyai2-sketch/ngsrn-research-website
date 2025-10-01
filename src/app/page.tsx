@@ -148,7 +148,7 @@ export default function Home() {
           </p>
           <Link
             href="/contact"
-            className="bg-ngsrn-accent text-ngsrn-primary px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-200"
+            className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
           >
             Get Involved
           </Link>

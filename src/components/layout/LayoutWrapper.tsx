@@ -16,9 +16,7 @@ const AccessibilityControls = dynamic(
   }
 );
 
-const Header = dynamic(() => import('./Header'), {
-  loading: () => <div className="h-16 bg-white border-b border-gray-200"></div>
-});
+import SimpleHeader from './SimpleHeader';
 
 const Footer = dynamic(() => import('./Footer'), {
   loading: () => <div className="h-32 bg-gray-900"></div>
@@ -29,7 +27,17 @@ interface LayoutWrapperProps {
 }
 
 export function LayoutWrapper({ children }: LayoutWrapperProps) {
-  const { data: session, status } = useSession();
+  let session = null;
+  let status = 'unauthenticated';
+  
+  try {
+    const sessionData = useSession();
+    session = sessionData.data;
+    status = sessionData.status;
+  } catch (error) {
+    console.warn('Session error (development mode):', error);
+  }
+  
   const pathname = usePathname();
   
   const isAuthenticated = status === 'authenticated';
@@ -45,7 +53,7 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
         <SkipLink />
         
         {!isCMSPage && !isAdminPage && (
-          <Header 
+          <SimpleHeader 
             isAuthenticated={isAuthenticated} 
             userRole={userRole} 
           />

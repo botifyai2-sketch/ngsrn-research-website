@@ -56,7 +56,7 @@ export const SITE_CONFIG = {
   url: process.env.NEXT_PUBLIC_BASE_URL || 'https://ngsrn.org',
   ogImage: '/og-image.jpg',
   links: {
-    linkedin: 'https://linkedin.com/company/ngsrn',
+    linkedin: 'https://www.linkedin.com/company/107658487/',
     email: 'info@ngsrn.org',
   },
 } as const;
@@ -77,5 +77,12 @@ export const PAGE_ROUTES = {
   articles: '/articles',
   search: '/search',
   contact: '/contact',
+  about: '/about',
   admin: '/admin',
+  legal: {
+    privacy: '/legal/privacy',
+    terms: '/legal/terms',
+    usageGuidelines: '/legal/usage-guidelines',
+    contact: '/legal/contact',
+  },
 } as const;
