@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Logo from '@/components/ui/Logo';
 
 interface SimpleHeaderProps {
   isAuthenticated?: boolean;
@@ -36,15 +37,11 @@ const SimpleHeader: React.FC<SimpleHeaderProps> = ({ isAuthenticated, userRole }
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-3">
-              <div className="h-10 w-10 bg-blue-900 text-white rounded-lg flex items-center justify-center font-bold">
-                NG
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-blue-900">NGSRN</h1>
-                <p className="text-xs text-gray-500">Research Network</p>
-              </div>
-            </Link>
+            <Logo 
+              href="/" 
+              size="md" 
+              showText={true}
+            />
           </div>
 
           {/* Desktop Navigation - Always visible for testing */}

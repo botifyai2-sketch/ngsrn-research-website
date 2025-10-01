@@ -4,6 +4,7 @@ import { useSession, signOut } from "next-auth/react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { LogOut, Home, User } from "lucide-react"
+import Logo from "@/components/ui/Logo"
 
 export function CMSHeader() {
   const { data: session } = useSession()
@@ -17,9 +18,11 @@ export function CMSHeader() {
       <div className="px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <Link href="/cms" className="text-xl font-bold text-gray-900">
-              NGSRN CMS
-            </Link>
+            <Logo 
+              href="/cms" 
+              size="sm" 
+              showText={true}
+            />
             <span className="text-sm text-gray-500">Content Management System</span>
           </div>
 

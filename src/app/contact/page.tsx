@@ -76,7 +76,7 @@ export default function ContactPage() {
                   <div>
                     <p className="font-medium text-gray-900">LinkedIn</p>
                     <ExternalLink 
-                      href="https://www.linkedin.com/company/ngsrn" 
+                      href="https://www.linkedin.com/company/107658487/" 
                       className="text-blue-600 hover:text-blue-800"
                     >
                       NextGen Sustainable Research Network
@@ -196,7 +196,7 @@ export default function ContactPage() {
                   How can I stay updated on your latest research?
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Follow us on <ExternalLink href="https://www.linkedin.com/company/ngsrn" className="text-blue-600 hover:text-blue-800">LinkedIn</ExternalLink> for regular updates on our latest publications and research activities.
+                  Follow us on <ExternalLink href="https://www.linkedin.com/company/107658487/" className="text-blue-600 hover:text-blue-800">LinkedIn</ExternalLink> for regular updates on our latest publications and research activities.
                 </p>
               </div>
             </div>

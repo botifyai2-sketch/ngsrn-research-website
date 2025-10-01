@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 
 interface LogoProps {
   className?: string
@@ -28,13 +29,30 @@ export default function Logo({
   href,
   textColor = 'text-ngsrn-primary'
 }: LogoProps) {
+  const [imageError, setImageError] = useState(false)
+
   const logoContent = (
     <div className={`flex items-center space-x-3 ${className}`}>
-      {/* NGSRN Logo - Simple text-based design */}
-      <div className={`${sizeClasses[size]} flex items-center justify-center flex-shrink-0 bg-ngsrn-primary text-white rounded-lg font-bold`}>
-        <span className={size === 'sm' ? 'text-xs' : size === 'md' ? 'text-sm' : 'text-base'}>
-          NG
-        </span>
+      {/* NGSRN Logo - Image with fallback */}
+      <div className={`${sizeClasses[size]} flex items-center justify-center flex-shrink-0`}>
+        {!imageError ? (
+          <Image
+            src="/logo.png"
+            alt="NGSRN Logo"
+            width={size === 'sm' ? 32 : size === 'md' ? 48 : 64}
+            height={size === 'sm' ? 32 : size === 'md' ? 48 : 64}
+            className="object-contain"
+            onError={() => setImageError(true)}
+            priority
+          />
+        ) : (
+          // Fallback when image is not available
+          <div className={`${sizeClasses[size]} bg-ngsrn-primary text-white rounded-lg font-bold flex items-center justify-center`}>
+            <span className={size === 'sm' ? 'text-xs' : size === 'md' ? 'text-sm' : 'text-base'}>
+              NG
+            </span>
+          </div>
+        )}
       </div>
       
       {showText && (

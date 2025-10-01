@@ -5,25 +5,37 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-ngsrn-primary via-blue-800 to-ngsrn-secondary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <section 
+        className="relative bg-gradient-to-br from-ngsrn-primary via-blue-800 to-ngsrn-secondary text-white overflow-hidden"
+        style={{
+          backgroundImage: `url('https://images.pexels.com/photos/6334771/pexels-photo-6334771.jpeg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-ngsrn-primary/90 via-blue-800/85 to-ngsrn-secondary/90"></div>
+        
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
               NextGen Sustainable Research Network
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto drop-shadow-md">
               {SITE_CONFIG.description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/research"
-                className="bg-ngsrn-accent text-ngsrn-primary px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-200 text-center"
+                className="bg-ngsrn-accent text-ngsrn-primary px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-200 text-center shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Explore Research
               </Link>
               <Link
                 href="/articles"
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-ngsrn-primary transition-colors duration-200 text-center"
+                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-ngsrn-primary transition-colors duration-200 text-center shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Read Articles
               </Link>
