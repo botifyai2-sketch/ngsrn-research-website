@@ -66,7 +66,7 @@ export default function ArticlePreview({ content, title, className = '' }: Artic
           li: ({ children }) => (
             <li className="ml-4">{children}</li>
           ),
-          code: ({ inline, children, ...props }) => (
+          code: ({ inline, children, ...props }: any) => (
             inline ? (
               <code className="bg-gray-100 text-gray-800 px-1 py-0.5 rounded text-sm font-mono" {...props}>
                 {children}

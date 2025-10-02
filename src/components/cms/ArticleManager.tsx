@@ -225,7 +225,7 @@ export default function ArticleManager({ initialArticles = [] }: ArticleManagerP
                                         </td>
                                         <td className="px-6 py-4">
                                             <div className="text-sm text-gray-900">
-                                                {article.status === 'scheduled' && article.scheduledFor ? (
+                                                {article.status === 'SCHEDULED' && article.scheduledFor ? (
                                                     <div>
                                                         <div className="flex items-center gap-1">
                                                             <Calendar className="w-3 h-3" />

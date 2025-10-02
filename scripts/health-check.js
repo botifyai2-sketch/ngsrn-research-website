@@ -14,13 +14,23 @@ async function performHealthCheck(url) {
   console.log(`Target: ${url}`);
   console.log('');
 
+  // Initialize build monitoring if available
+  let buildMonitor = null;
+  try {
+    const BuildMonitor = require('./build-monitor');
+    buildMonitor = new BuildMonitor();
+  } catch (error) {
+    // Build monitoring not available
+  }
+
   const results = {
     connectivity: false,
     responseTime: 0,
     statusCode: 0,
     healthEndpoint: false,
     deploymentStatus: false,
-    buildValidation: false
+    buildValidation: false,
+    buildHealth: false
   };
 
   try {
@@ -56,6 +66,12 @@ async function performHealthCheck(url) {
     console.log('4️⃣  Build Validation');
     console.log('─'.repeat(25));
     results.buildValidation = await checkBuildValidation(url);
+    console.log('');
+
+    // 5. Build health monitoring check
+    console.log('5️⃣  Build Health Monitoring');
+    console.log('─'.repeat(25));
+    results.buildHealth = await checkBuildHealth(url, buildMonitor);
     console.log('');
 
     // Summary
@@ -199,6 +215,68 @@ async function checkBuildValidation(baseUrl) {
   }
 }
 
+async function checkBuildHealth(baseUrl, buildMonitor) {
+  try {
+    // Check build health API endpoint
+    const buildHealthUrl = `${baseUrl}/api/monitoring/build-health?action=health`;
+    const result = await makeRequest(buildHealthUrl);
+    
+    if (result.success && result.data) {
+      const healthData = JSON.parse(result.data);
+      console.log(`✅ Build health monitoring accessible`);
+      console.log(`📊 Overall Health: ${healthData.overall.status.toUpperCase()} (${healthData.overall.score}/100)`);
+      console.log(`📈 Success Rate: ${Math.round(healthData.buildSuccess.rate * 100)}%`);
+      console.log(`📊 Total Builds: ${healthData.buildSuccess.totalBuilds}`);
+      console.log(`📉 Recent Failures: ${healthData.buildSuccess.recentFailures}`);
+      
+      if (healthData.configurationDrift.hasDrift) {
+        console.log(`⚠️  Configuration Drift: ${healthData.configurationDrift.severity} severity`);
+      } else {
+        console.log(`✅ No Configuration Drift`);
+      }
+      
+      if (healthData.activeAlerts.length > 0) {
+        console.log(`🚨 Active Alerts: ${healthData.activeAlerts.length}`);
+        healthData.activeAlerts.slice(0, 3).forEach(alert => {
+          console.log(`   - ${alert.severity.toUpperCase()}: ${alert.message}`);
+        });
+      } else {
+        console.log(`✅ No Active Alerts`);
+      }
+      
+      return healthData.overall.status !== 'critical';
+    } else {
+      console.error('❌ Build health monitoring not accessible');
+      
+      // Fallback to local monitoring if available
+      if (buildMonitor) {
+        console.log('ℹ️  Checking local build monitoring...');
+        const localHealth = buildMonitor.generateHealthReport();
+        console.log(`📊 Local Health: ${localHealth.overall.status.toUpperCase()} (${localHealth.overall.score}/100)`);
+        return localHealth.overall.status !== 'critical';
+      }
+      
+      return false;
+    }
+  } catch (error) {
+    console.error('❌ Build health check failed:', error.message);
+    
+    // Fallback to local monitoring if available
+    if (buildMonitor) {
+      try {
+        console.log('ℹ️  Attempting local build health check...');
+        const localHealth = buildMonitor.generateHealthReport();
+        console.log(`📊 Local Health: ${localHealth.overall.status.toUpperCase()} (${localHealth.overall.score}/100)`);
+        return localHealth.overall.status !== 'critical';
+      } catch (localError) {
+        console.error('❌ Local build health check also failed:', localError.message);
+      }
+    }
+    
+    return false;
+  }
+}
+
 function makeRequest(url) {
   return new Promise((resolve) => {
     const client = url.startsWith('https:') ? https : http;
@@ -241,7 +319,8 @@ function printHealthSummary(results) {
     { name: 'Connectivity', status: results.connectivity },
     { name: 'Health Endpoint', status: results.healthEndpoint },
     { name: 'Deployment Status', status: results.deploymentStatus },
-    { name: 'Build Validation', status: results.buildValidation }
+    { name: 'Build Validation', status: results.buildValidation },
+    { name: 'Build Health Monitoring', status: results.buildHealth }
   ];
 
   checks.forEach(check => {
@@ -256,10 +335,11 @@ function printHealthSummary(results) {
 
 function calculateOverallHealth(results) {
   const weights = {
-    connectivity: 40,
+    connectivity: 30,
     healthEndpoint: 20,
-    deploymentStatus: 20,
-    buildValidation: 20
+    deploymentStatus: 15,
+    buildValidation: 15,
+    buildHealth: 20
   };
 
   let totalScore = 0;

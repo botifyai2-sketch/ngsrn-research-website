@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Merriweather, JetBrains_Mono } from "next/font/google";
+import { Suspense } from "react";
 import { SessionProvider } from "@/components/providers/SessionProvider";
 import { LayoutWrapper } from "@/components/layout/LayoutWrapper";
 import { StructuredData } from "@/components/seo/StructuredData";
@@ -128,14 +129,16 @@ export default function RootLayout({
         className={`${inter.variable} ${merriweather.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <SessionProvider>
-          <AnalyticsProvider>
-            <PerformanceProvider>
-              <LayoutWrapper>
-                {children}
-              </LayoutWrapper>
-              <CookieConsent />
-            </PerformanceProvider>
-          </AnalyticsProvider>
+          <Suspense fallback={<div>Loading...</div>}>
+            <AnalyticsProvider>
+              <PerformanceProvider>
+                <LayoutWrapper>
+                  {children}
+                </LayoutWrapper>
+                <CookieConsent />
+              </PerformanceProvider>
+            </AnalyticsProvider>
+          </Suspense>
         </SessionProvider>
       </body>
     </html>

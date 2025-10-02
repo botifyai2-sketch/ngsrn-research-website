@@ -156,7 +156,7 @@ class MonitoringService {
             response: navigation.responseEnd - navigation.responseStart,
             dom: navigation.domContentLoadedEventEnd - navigation.responseEnd,
             load: navigation.loadEventEnd - navigation.loadEventStart,
-            total: navigation.loadEventEnd - navigation.navigationStart
+            total: navigation.loadEventEnd - navigation.fetchStart
           };
 
           Object.entries(metrics).forEach(([name, value]) => {
@@ -406,8 +406,8 @@ class MonitoringService {
       });
 
       // Send to Google Analytics if available
-      if (typeof gtag !== 'undefined') {
-        gtag('event', event.action, {
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', event.action, {
           event_category: event.category,
           event_label: event.label,
           value: event.value,

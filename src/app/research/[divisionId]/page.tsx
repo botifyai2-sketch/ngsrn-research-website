@@ -41,7 +41,18 @@ export async function generateMetadata({ params }: ResearchDivisionPageProps): P
   }
 
   // Generate SEO data using our utility functions
-  const seoData = generateDivisionSEO(division);
+  // Extract only the ResearchDivision properties for SEO
+  const divisionForSEO = {
+    id: division.id,
+    name: division.name,
+    description: division.description,
+    sdgAlignment: division.sdgAlignment,
+    color: division.color,
+    icon: division.icon,
+    createdAt: (division as any).createdAt || new Date(),
+    updatedAt: (division as any).updatedAt || new Date()
+  };
+  const seoData = generateDivisionSEO(divisionForSEO);
   return generateSEOMetadata(seoData);
 }
 

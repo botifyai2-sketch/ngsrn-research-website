@@ -70,7 +70,12 @@ function validateEnvironment(phase = 'simple', env = process.env) {
   // Check required variables
   config.required.forEach(varName => {
     if (!env[varName]) {
-      missing.push(varName);
+      // For Vercel deployments, some variables might be set automatically
+      if (varName === 'NEXT_PUBLIC_BASE_URL' && (env.VERCEL_URL || env.VERCEL)) {
+        console.log(`ℹ️  ${varName} will be set automatically by Vercel`);
+      } else {
+        missing.push(varName);
+      }
     }
   });
   

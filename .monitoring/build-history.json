@@ -1,0 +1,2306 @@
+{
+  "builds": [
+    {
+      "timestamp": "2025-10-02T08:35:42.230Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.230Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.251Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.251Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.266Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.266Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.279Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.279Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.290Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.290Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.318Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.318Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.334Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.334Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.368Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.369Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.382Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.382Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.392Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.392Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.401Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.401Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.416Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.416Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.423Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.423Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.434Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.434Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.446Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.446Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.454Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.454Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.468Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.468Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.485Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.485Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.496Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.496Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.505Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.505Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.517Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.517Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.529Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.529Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.549Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.549Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.560Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.560Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.569Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.569Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.580Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.580Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.589Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.589Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.603Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.603Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.616Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.616Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.626Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.626Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.634Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.634Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.645Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.645Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.654Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.654Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.667Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.667Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.699Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.699Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.706Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.706Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.718Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.718Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.731Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.731Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.738Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.738Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.751Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.751Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.763Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.763Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.769Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.769Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.780Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.780Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.786Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.786Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.796Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.796Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.803Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.803Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.813Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.813Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.820Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.820Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.830Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.830Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.838Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.838Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.847Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.847Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.855Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.855Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.867Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.867Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.878Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.878Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.884Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.884Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.894Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.894Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.906Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.910Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.917Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.917Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.929Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.929Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.935Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.935Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.947Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.947Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.955Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.955Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.967Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.967Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.979Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.979Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:42.987Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:42.988Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.001Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.001Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.013Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.013Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.028Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.028Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.035Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.035Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.046Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.046Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.054Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.054Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.065Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.065Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.072Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.072Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.085Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.085Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.097Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.097Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.106Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.106Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.119Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.119Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.130Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.130Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.139Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.139Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.151Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.151Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.163Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.163Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.170Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.170Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.181Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.181Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.188Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.188Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.199Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.199Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.206Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.206Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.217Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.217Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.229Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.229Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.236Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.236Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.248Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.248Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.256Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.256Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.267Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.267Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.279Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.279Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.286Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.286Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.298Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.298Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.305Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.306Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.316Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.316Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.328Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.328Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:35:43.334Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:35:43.334Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    },
+    {
+      "timestamp": "2025-10-02T08:40:32.761Z",
+      "phase": "unknown",
+      "errors": [],
+      "warnings": [],
+      "environment": {
+        "nodeVersion": "v22.18.0",
+        "platform": "win32",
+        "arch": "x64",
+        "ci": false,
+        "vercel": false
+      },
+      "configuration": {
+        "timestamp": "2025-10-02T08:40:32.762Z",
+        "packageJson": "1499752776",
+        "tsConfig": "665542267",
+        "tsConfigBuild": "1738732018",
+        "nextConfig": "-588908454",
+        "envVars": "-1655440277",
+        "dependencies": "-1476788901"
+      },
+      "metrics": {}
+    }
+  ],
+  "statistics": {},
+  "lastUpdated": "2025-10-02T08:40:32.771Z"
+}

@@ -32,7 +32,7 @@ export default function SearchTestPage() {
       const data = await response.json();
       setTestResults(data);
     } catch (error) {
-      setTestResults({ success: false, error: error.message });
+      setTestResults({ success: false, error: error instanceof Error ? error.message : 'Unknown error' });
     } finally {
       setIsLoading(false);
     }

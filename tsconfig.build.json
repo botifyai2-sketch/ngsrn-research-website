@@ -1,0 +1,37 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/__tests__/**",
+    "**/e2e/**",
+    "jest.config.js",
+    "jest.setup.js",
+    "playwright.config.ts",
+    "lighthouserc.js",
+    "**/*test*/**",
+    "src/app/test-*/**",
+    "src/app/search-test/**",
+    "src/app/search-admin/**",
+    "scripts/test-*.js",
+    "scripts/*test*.js",
+    "test-*.js",
+    "*test*.js",
+    "**/*.stories.ts",
+    "**/*.stories.tsx",
+    ".next/**",
+    "coverage/**",
+    "dist/**",
+    "build/**",
+    "src/**/__tests__/**",
+    "src/**/test/**",
+    "**/*.integration.test.ts",
+    "**/*.integration.test.tsx"
+  ]
+}

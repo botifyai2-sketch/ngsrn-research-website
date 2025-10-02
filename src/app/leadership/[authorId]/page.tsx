@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: LeadershipProfilePageProps): 
   }
 
   // Generate SEO data using our utility functions
-  const divisions = author.researchDivisions?.map(rd => rd.division) || [];
+  const divisions = (author as any).researchDivisions?.map((rd: any) => rd.division) || [];
   const seoData = generateAuthorSEO(author, divisions);
   return generateSEOMetadata(seoData);
 }
@@ -60,7 +60,7 @@ export default async function LeadershipProfilePage({ params }: LeadershipProfil
       url: process.env.NEXT_PUBLIC_BASE_URL || 'https://ngsrn.org'
     },
     ...(author.linkedinUrl && { sameAs: [author.linkedinUrl] }),
-    knowsAbout: author.researchDivisions?.map(rd => rd.division.name) || []
+    knowsAbout: (author as any).researchDivisions?.map((rd: any) => rd.division.name) || []
   };
 
   return (
@@ -135,11 +135,11 @@ export default async function LeadershipProfilePage({ params }: LeadershipProfil
           {/* Additional Information Sections */}
           <div className="space-y-8">
             {/* Research Focus */}
-            {author.researchDivisions && author.researchDivisions.length > 0 && (
+            {(author as any).researchDivisions && (author as any).researchDivisions.length > 0 && (
               <div className="bg-white rounded-lg shadow-md p-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Research Focus</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {author.researchDivisions.map((division) => (
+                  {(author as any).researchDivisions.map((division: any) => (
                     <Link
                       key={division.division.id}
                       href={`/research/${division.division.id}`}
@@ -158,11 +158,11 @@ export default async function LeadershipProfilePage({ params }: LeadershipProfil
             )}
 
             {/* Recent Publications */}
-            {author.articles && author.articles.length > 0 && (
+            {(author as any).articles && (author as any).articles.length > 0 && (
               <div className="bg-white rounded-lg shadow-md p-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Recent Publications</h3>
                 <div className="space-y-4">
-                  {author.articles.slice(0, 5).map((articleRelation) => (
+                  {(author as any).articles.slice(0, 5).map((articleRelation: any) => (
                     <div key={articleRelation.article.id} className="border-l-4 border-blue-500 pl-4">
                       <Link
                         href={`/articles/${articleRelation.article.slug}`}
@@ -185,7 +185,7 @@ export default async function LeadershipProfilePage({ params }: LeadershipProfil
                   ))}
                 </div>
                 
-                {author.articles.length > 5 && (
+                {(author as any).articles.length > 5 && (
                   <div className="mt-6 text-center">
                     <Link
                       href={`/articles?author=${author.id}`}

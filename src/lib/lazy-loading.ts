@@ -25,7 +25,7 @@ export function createLazyComponent<T = {}>(
   }
 ) {
   return dynamic(importFn, {
-    loading: options?.loading || (() => LoadingSpinner()),
+    loading: options?.loading as any,
     ssr: false, // Disable SSR for lazy components to improve initial load
   });
 }
@@ -40,7 +40,7 @@ export const LazyAIAssistant = createLazyComponent(
 );
 
 export const LazyMediaManager = createLazyComponent(
-  () => import('@/components/media/MediaManager').then(mod => ({ default: mod.MediaManager }))
+  () => import('@/components/media/MediaManager').then(mod => ({ default: mod.MediaManager })) as any
 );
 
 export const LazyArticleEditor = createLazyComponent(

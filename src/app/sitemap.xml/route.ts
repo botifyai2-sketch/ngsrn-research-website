@@ -22,10 +22,17 @@ export async function GET() {
       getAllAuthors()
     ]);
 
+    // Transform articles to the expected type for sitemap generation
+    const transformedArticles = articles.map(article => ({
+      ...article,
+      tags: typeof article.tags === 'string' ? JSON.parse(article.tags) : article.tags,
+      seoKeywords: typeof article.seoKeywords === 'string' ? JSON.parse(article.seoKeywords) : article.seoKeywords
+    }));
+
     // Generate all sitemap URLs
     const sitemapUrls: SitemapUrl[] = [
       ...generateStaticSitemapUrls(baseUrl),
-      ...generateArticleSitemapUrls(articles, baseUrl),
+      ...generateArticleSitemapUrls(transformedArticles, baseUrl),
       ...generateDivisionSitemapUrls(divisions, baseUrl),
       ...generateAuthorSitemapUrls(authors, baseUrl),
     ];

@@ -35,7 +35,7 @@ export function Article({
   // Transform authors from junction table structure
   const authors = article.authors.map(authorRelation => ({
     ...authorRelation.author,
-    researchDivisions: authorRelation.author.researchDivisions?.map((dr: any) => dr.division) || []
+    researchDivisions: (authorRelation.author as any).researchDivisions?.map((dr: any) => dr.division) || []
   }));
 
   // Extract headings from content for table of contents

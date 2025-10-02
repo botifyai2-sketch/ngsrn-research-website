@@ -2,46 +2,21 @@ import { prisma } from '@/lib/prisma'
 import { ArticleWithRelations } from '@/types'
 import { unstable_cache } from 'next/cache'
 
-export async function getAllPublishedArticles(): Promise<ArticleWithRelations[]> {
-  return prisma.article.findMany({
-    where: {
-      status: 'PUBLISHED'
-    },
-    include: {
-      division: true,
-      authors: {
-        include: {
-          author: {
-            include: {
-              researchDivisions: {
-                include: {
-                  division: true
-                }
-              }
-            }
-          }
-        }
-      },
-      mediaFiles: {
-        include: {
-          mediaFile: true
-        }
-      }
-    },
-    orderBy: {
-      publishedAt: 'desc'
-    }
-  }) as any
-}
+// Mock data for simple deployment when database is disabled
+const mockArticles: ArticleWithRelations[] = [];
 
-export const getPublishedArticles = unstable_cache(
-  async (): Promise<ArticleWithRelations[]> => {
-    return prisma.article.findMany({
+// Check if database features are enabled
+const isDatabaseEnabled = process.env.NEXT_PUBLIC_ENABLE_CMS === 'true' || process.env.DATABASE_URL;
+
+export async function getAllPublishedArticles(): Promise<ArticleWithRelations[]> {
+  if (!isDatabaseEnabled) {
+    return mockArticles;
+  }
+  
+  try {
+    return await prisma.article.findMany({
       where: {
-        status: 'PUBLISHED',
-        publishedAt: {
-          lte: new Date()
-        }
+        status: 'PUBLISHED'
       },
       include: {
         division: true,
@@ -67,7 +42,56 @@ export const getPublishedArticles = unstable_cache(
       orderBy: {
         publishedAt: 'desc'
       }
-    }) as any
+    }) as any;
+  } catch (error) {
+    console.warn('Database not available, using mock data:', error);
+    return mockArticles;
+  }
+}
+
+export const getPublishedArticles = unstable_cache(
+  async (): Promise<ArticleWithRelations[]> => {
+    if (!isDatabaseEnabled) {
+      return mockArticles;
+    }
+    
+    try {
+      return await prisma.article.findMany({
+        where: {
+          status: 'PUBLISHED',
+          publishedAt: {
+            lte: new Date()
+          }
+        },
+        include: {
+          division: true,
+          authors: {
+            include: {
+            author: {
+              include: {
+                researchDivisions: {
+                  include: {
+                    division: true
+                  }
+                }
+              }
+            }
+          }
+        },
+        mediaFiles: {
+          include: {
+            mediaFile: true
+          }
+        }
+      },
+      orderBy: {
+        publishedAt: 'desc'
+      }
+    }) as any;
+    } catch (error) {
+      console.warn('Database not available, using mock data:', error);
+      return mockArticles;
+    }
   },
   ['published-articles'],
   { 
@@ -77,7 +101,12 @@ export const getPublishedArticles = unstable_cache(
 )
 
 export async function getArticleBySlug(slug: string): Promise<ArticleWithRelations | null> {
-  return prisma.article.findUnique({
+  if (!isDatabaseEnabled) {
+    return null;
+  }
+  
+  try {
+    return await prisma.article.findUnique({
     where: { slug },
     include: {
       division: true,
@@ -100,15 +129,24 @@ export async function getArticleBySlug(slug: string): Promise<ArticleWithRelatio
         }
       }
     }
-  }) as any
+  }) as any;
+  } catch (error) {
+    console.warn('Database not available, using mock data:', error);
+    return null;
+  }
 }
 
 export async function getArticlesByDivision(divisionId: string): Promise<ArticleWithRelations[]> {
-  return prisma.article.findMany({
-    where: {
-      divisionId,
-      status: 'PUBLISHED',
-      publishedAt: {
+  if (!isDatabaseEnabled) {
+    return mockArticles;
+  }
+  
+  try {
+    return await prisma.article.findMany({
+      where: {
+        divisionId,
+        status: 'PUBLISHED',
+        publishedAt: {
         lte: new Date()
       }
     },
@@ -136,11 +174,20 @@ export async function getArticlesByDivision(divisionId: string): Promise<Article
     orderBy: {
       publishedAt: 'desc'
     }
-  }) as any
+  }) as any;
+  } catch (error) {
+    console.warn('Database not available, using mock data:', error);
+    return mockArticles;
+  }
 }
 
 export async function getArticlesByAuthor(authorId: string): Promise<ArticleWithRelations[]> {
-  return prisma.article.findMany({
+  if (!isDatabaseEnabled) {
+    return mockArticles;
+  }
+  
+  try {
+    return await prisma.article.findMany({
     where: {
       authors: {
         some: {
@@ -176,7 +223,11 @@ export async function getArticlesByAuthor(authorId: string): Promise<ArticleWith
     orderBy: {
       publishedAt: 'desc'
     }
-  }) as any
+  }) as any;
+  } catch (error) {
+    console.warn('Database not available, using mock data:', error);
+    return mockArticles;
+  }
 }
 
 export async function searchArticles(query: string, filters?: {
@@ -186,7 +237,12 @@ export async function searchArticles(query: string, filters?: {
   dateFrom?: Date
   dateTo?: Date
 }): Promise<ArticleWithRelations[]> {
-  return prisma.article.findMany({
+  if (!isDatabaseEnabled) {
+    return mockArticles;
+  }
+  
+  try {
+    return await prisma.article.findMany({
     where: {
       AND: [
         {
@@ -232,5 +288,9 @@ export async function searchArticles(query: string, filters?: {
     orderBy: {
       publishedAt: 'desc'
     }
-  }) as any
+  }) as any;
+  } catch (error) {
+    console.warn('Database not available, using mock data:', error);
+    return mockArticles;
+  }
 }

@@ -1,13 +1,9 @@
+'use client';
+
 import React from 'react';
-import { Metadata } from 'next/types';
 import SocialShare from '@/components/social/SocialShare';
 import ContactForm from '@/components/contact/ContactForm';
 import ExternalLink from '@/components/ui/ExternalLink';
-
-export const metadata: Metadata = {
-  title: 'Test External Integration Features | NGSRN',
-  description: 'Testing page for external integration features including social sharing, contact forms, and external links.',
-};
 
 export default function TestExternalIntegrationPage() {
   const handleContactSubmit = async (data: {

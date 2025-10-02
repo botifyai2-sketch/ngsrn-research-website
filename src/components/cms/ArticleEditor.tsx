@@ -57,6 +57,7 @@ export default function ArticleEditor({
   const [showMediaSelector, setShowMediaSelector] = useState(false)
   const [activeTab, setActiveTab] = useState<'edit' | 'preview'>('edit')
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [showRevisionHistory, setShowRevisionHistory] = useState(false)
 
   const [formData, setFormData] = useState<FormData>({
     title: article?.title || '',
@@ -68,7 +69,7 @@ export default function ArticleEditor({
     seoTitle: article?.seoTitle || '',
     seoDescription: article?.seoDescription || '',
     seoKeywords: article?.seoKeywords ? JSON.parse(article.seoKeywords as string) : [],
-    status: article?.status || 'DRAFT',
+    status: (article?.status === 'ARCHIVED' ? 'DRAFT' : article?.status) || 'DRAFT',
     scheduledFor: article?.scheduledFor?.toISOString().slice(0, 16) || ''
   })
 
