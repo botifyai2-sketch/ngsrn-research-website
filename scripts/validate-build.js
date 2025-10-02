@@ -42,7 +42,7 @@ loadEnvFiles();
 // Import the environment validation
 const { validateEnvironment, ENV_CONFIGS } = require('./env-config');
 
-async function validateBuildEnvironment() {
+async function validateBuildEnvironment(monitor = null, startTime = Date.now(), buildErrors = [], buildSuccess = false) {
   console.log('🔍 Validating build environment...');
   
   try {
@@ -106,7 +106,6 @@ async function validateBuildEnvironment() {
     checkCommonIssues(phase, features);
     
     console.log('✅ Build validation passed');
-    buildSuccess = true;
     
     // Record successful build
     if (monitor) {
@@ -119,12 +118,13 @@ async function validateBuildEnvironment() {
     
   } catch (error) {
     console.error('❌ Build validation error:', error.message);
-    buildSuccess = false;
-    buildErrors.push({
+    
+    const errorInfo = {
       type: 'validation_error',
       message: error.message,
       stack: error.stack
-    });
+    };
+    buildErrors.push(errorInfo);
     
     // Enhanced error context and suggestions
     if (error.code) {
@@ -856,7 +856,7 @@ async function main() {
     const phase = hasAnyFeature ? 'full' : 'simple';
     
     // Run all validation checks
-    await validateBuildEnvironment();
+    buildSuccess = await validateBuildEnvironment(monitor, startTime, buildErrors, buildSuccess);
     checkNextConfig();
     checkPackageJson();
     
