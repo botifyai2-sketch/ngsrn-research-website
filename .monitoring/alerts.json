@@ -1231,6 +1231,226 @@
         "failureCount": 5,
         "errors": []
       }
+    },
+    {
+      "id": "consecutive-failures-1759404897413",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T11:34:57.413Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759404944229",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T11:35:44.229Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759404972729",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T11:36:12.729Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759428468125",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T18:07:48.125Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759428489874",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T18:08:09.874Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759439114548",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T21:05:14.548Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759439265232",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T21:07:45.232Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759439367290",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T21:09:27.290Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759439406997",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T21:10:06.997Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759439950879",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T21:19:10.879Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759440357968",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T21:25:57.968Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759440444632",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T21:27:24.632Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759440456780",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T21:27:36.780Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759440780581",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T21:33:00.581Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759440790107",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T21:33:10.107Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759440962703",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T21:36:02.703Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759440972562",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T21:36:12.562Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759441740427",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-02T21:49:00.428Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759467300297",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-03T04:55:00.297Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
+    },
+    {
+      "id": "consecutive-failures-1759468706805",
+      "type": "consecutive_failures",
+      "severity": "high",
+      "message": "5 consecutive build failures detected",
+      "timestamp": "2025-10-03T05:18:26.805Z",
+      "data": {
+        "failureCount": 5,
+        "errors": []
+      }
     }
   ],
   "resolved": []

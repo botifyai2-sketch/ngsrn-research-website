@@ -27,9 +27,16 @@ function loadEnvFiles() {
     if (fs.existsSync(envPath)) {
       const envContent = fs.readFileSync(envPath, 'utf8');
       envContent.split('\n').forEach(line => {
-        const match = line.match(/^([^#][^=]+)="?([^"]*)"?$/);
-        if (match && !process.env[match[1]]) {
-          process.env[match[1]] = match[2];
+        // Skip empty lines and comments
+        const trimmedLine = line.trim();
+        if (!trimmedLine || trimmedLine.startsWith('#')) {
+          return;
+        }
+        
+        // Match KEY=value or KEY="value"
+        const match = trimmedLine.match(/^([^=]+)="?([^"]*)"?$/);
+        if (match && !process.env[match[1].trim()]) {
+          process.env[match[1].trim()] = match[2];
         }
       });
     }
@@ -40,7 +47,12 @@ function loadEnvFiles() {
 loadEnvFiles();
 
 // Import the environment validation
-const { validateEnvironment, ENV_CONFIGS } = require('./env-config');
+const { 
+  validateEnvironment, 
+  detectVercelEnvironment, 
+  detectDeploymentPhase, 
+  ENV_CONFIGS 
+} = require('./env-config');
 
 async function validateBuildEnvironment(monitor = null, startTime = Date.now(), buildErrors = [], buildSuccess = false) {
   console.log('🔍 Validating build environment...');
@@ -60,36 +72,73 @@ async function validateBuildEnvironment(monitor = null, startTime = Date.now(), 
         process.exit(1);
       }
       
-      console.log('✅ Automated fixes completed, continuing with validation...\n');
+      console.log('✅ Automated fixes completed, reloading environment and continuing with validation...\n');
+      
+      // Reload environment variables after auto-fix
+      loadEnvFiles();
     }
     
-    // Determine deployment phase
-    const features = {
-      cms: process.env.NEXT_PUBLIC_ENABLE_CMS === 'true',
-      auth: process.env.NEXT_PUBLIC_ENABLE_AUTH === 'true',
-      search: process.env.NEXT_PUBLIC_ENABLE_SEARCH === 'true',
-      ai: process.env.NEXT_PUBLIC_ENABLE_AI === 'true',
-      media: process.env.NEXT_PUBLIC_ENABLE_MEDIA === 'true'
-    };
-    
-    const hasAnyFeature = Object.values(features).some(Boolean);
-    const phase = hasAnyFeature ? 'full' : 'simple';
+    // Determine deployment phase and Vercel environment
+    const phase = detectDeploymentPhase(process.env);
+    const vercelInfo = detectVercelEnvironment(process.env);
     
     console.log(`📋 Detected deployment phase: ${phase}`);
     console.log(`📝 ${ENV_CONFIGS[phase].description}`);
     
-    // Validate environment variables
-    const isValid = validateEnvironment(phase, process.env);
+    // Validate environment variables with enhanced reporting
+    const validationResult = validateEnvironment(phase, process.env);
     
-    if (!isValid) {
+    if (!validationResult.isValid) {
       console.error('❌ Environment validation failed');
       
-      if (DeploymentAutoFix && !shouldAutoFix) {
-        console.error('💡 Try running with --auto-fix flag to automatically resolve common issues:');
-        console.error('   node scripts/validate-build.js --auto-fix');
-      } else {
-        console.error('💡 Fix environment configuration before proceeding with build');
+      // The enhanced error reporting is now handled within validateEnvironment()
+      // Additional context for build validation
+      console.error('\n🔧 Build Validation Context:');
+      console.error(`   Deployment Phase: ${phase}`);
+      console.error(`   Environment: ${process.env.NODE_ENV || 'development'}`);
+      console.error(`   Auto-fix Available: ${DeploymentAutoFix ? 'Yes' : 'No'}`);
+      
+      if (vercelInfo?.isVercel) {
+        console.error(`   Vercel Environment: ${vercelInfo.environment}`);
+        console.error(`   Vercel URL: ${vercelInfo.url || 'Not available'}`);
       }
+      
+      // Auto-fix suggestions
+      if (DeploymentAutoFix && !shouldAutoFix) {
+        console.error('\n🔧 Automated fixes available:');
+        
+        // Check for specific fixable issues
+        const missingSiteName = validationResult.errors.find(e => e.variable === 'NEXT_PUBLIC_SITE_NAME');
+        const hasOtherMissing = validationResult.errors.filter(e => e.variable !== 'NEXT_PUBLIC_SITE_NAME').length > 0;
+        
+        if (missingSiteName) {
+          console.error('   ✓ Auto-inject default NEXT_PUBLIC_SITE_NAME');
+        }
+        if (hasOtherMissing) {
+          console.error('   ✓ Generate missing environment files with defaults');
+        }
+        console.error('   ✓ Create proper environment file structure');
+        console.error('   ✓ Add documentation and setup instructions');
+        
+        console.error('\n💡 Run with --auto-fix to apply these fixes automatically:');
+        console.error('   node scripts/validate-build.js --auto-fix');
+        console.error('\n   Or run the auto-fix tool directly:');
+        console.error('   node scripts/deployment-auto-fix.js');
+      } else if (!DeploymentAutoFix) {
+        console.error('\n💡 Manual fix options:');
+        console.error('   1. Follow the detailed setup instructions above');
+        console.error('   2. Use the troubleshooting guide: ENVIRONMENT_TROUBLESHOOTING_GUIDE.md');
+        console.error('   3. Create .env.local file with the missing variables');
+        console.error('   4. Set the variables in your Vercel dashboard for deployment');
+      } else {
+        console.error('\n💡 Review the detailed error report above and fix environment configuration');
+      }
+      
+      // Additional troubleshooting resources
+      console.error('\n📚 Additional Resources:');
+      console.error('   • Troubleshooting Guide: ./ENVIRONMENT_TROUBLESHOOTING_GUIDE.md');
+      console.error('   • Vercel Docs: https://vercel.com/docs/concepts/projects/environment-variables');
+      console.error('   • Validate manually: node scripts/env-config.js validate');
       
       process.exit(1);
     }
@@ -103,7 +152,15 @@ async function validateBuildEnvironment(monitor = null, startTime = Date.now(), 
     await validateBuildConfiguration();
     
     // Check for common issues
-    checkCommonIssues(phase, features);
+    const features = {
+      cms: process.env.NEXT_PUBLIC_ENABLE_CMS === 'true',
+      auth: process.env.NEXT_PUBLIC_ENABLE_AUTH === 'true',
+      search: process.env.NEXT_PUBLIC_ENABLE_SEARCH === 'true',
+      ai: process.env.NEXT_PUBLIC_ENABLE_AI === 'true',
+      media: process.env.NEXT_PUBLIC_ENABLE_MEDIA === 'true'
+    };
+    
+    checkCommonIssues(phase, features, vercelInfo);
     
     console.log('✅ Build validation passed');
     
@@ -609,19 +666,49 @@ function findTestFiles(dir) {
   return testFiles;
 }
 
-function checkCommonIssues(phase, features) {
+function checkCommonIssues(phase, features, vercelInfo = null) {
   console.log('🔧 Checking for common configuration issues...');
   
-  // Check base URL format
+  // Enhanced Vercel-aware base URL validation
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   if (baseUrl) {
     if (baseUrl.includes('your-app.vercel.app')) {
-      console.warn('⚠️  Base URL contains placeholder. This will be updated automatically by Vercel.');
-      // Don't fail the build for placeholder URLs during initial deployment
+      if (vercelInfo?.isVercel && vercelInfo.url) {
+        console.log(`ℹ️  Base URL placeholder detected. Vercel will use: https://${vercelInfo.url}`);
+      } else {
+        console.warn('⚠️  Base URL contains placeholder. Update with your actual domain.');
+      }
     }
     
     if (!baseUrl.startsWith('https://') && process.env.NODE_ENV === 'production') {
       console.warn('⚠️  Base URL should use HTTPS in production.');
+    }
+    
+    // Check for Vercel URL mismatch
+    if (vercelInfo?.isVercel && vercelInfo.url) {
+      const expectedUrl = `https://${vercelInfo.url}`;
+      if (baseUrl !== expectedUrl && !vercelInfo.hasCustomDomain) {
+        console.warn(`⚠️  Base URL (${baseUrl}) doesn't match Vercel URL (${expectedUrl})`);
+        console.warn('   Consider removing NEXT_PUBLIC_BASE_URL to use auto-generated URL');
+      }
+    }
+  } else if (vercelInfo?.isVercel && vercelInfo.url) {
+    console.log(`ℹ️  NEXT_PUBLIC_BASE_URL not set. Vercel will auto-generate: https://${vercelInfo.url}`);
+  }
+  
+  // Vercel-specific checks
+  if (vercelInfo?.isVercel) {
+    console.log('🚀 Vercel deployment checks:');
+    console.log(`   Environment: ${vercelInfo.environment}`);
+    console.log(`   Auto-provided variables: ${vercelInfo.autoProvidedVars.length}`);
+    
+    // Check for common Vercel issues
+    if (vercelInfo.environment === 'production' && !process.env.NEXTAUTH_SECRET && features.auth) {
+      console.warn('⚠️  Authentication enabled but NEXTAUTH_SECRET not set for production');
+    }
+    
+    if (vercelInfo.url && !vercelInfo.url.includes('.vercel.app')) {
+      console.log(`✅ Custom domain detected: ${vercelInfo.url}`);
     }
   }
   

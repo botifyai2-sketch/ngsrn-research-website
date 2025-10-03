@@ -80,6 +80,9 @@ class DeploymentAutoFix {
     // Check for missing environment variables
     await this.checkEnvironmentVariables();
     
+    // Check for missing environment files
+    await this.checkEnvironmentFiles();
+    
     // Check for TypeScript compilation errors
     await this.checkTypeScriptErrors();
     
@@ -277,15 +280,98 @@ class DeploymentAutoFix {
    * Check for missing environment variables
    */
   async checkEnvironmentVariables() {
+    // Import environment validation from env-config
+    let envConfig;
+    try {
+      envConfig = require('./env-config');
+    } catch (error) {
+      console.log('  ⚠️  Environment configuration module not available');
+      return;
+    }
+
+    // Detect deployment phase and validate environment
+    const phase = envConfig.detectDeploymentPhase(process.env);
+    const validationResult = envConfig.validateEnvironment(phase, process.env);
+    
+    if (!validationResult.isValid && validationResult.errors.length > 0) {
+      // Check for missing NEXT_PUBLIC_SITE_NAME specifically
+      const missingSiteName = validationResult.errors.find(error => 
+        error.variable === 'NEXT_PUBLIC_SITE_NAME'
+      );
+      
+      if (missingSiteName) {
+        this.issues.push({
+          type: 'MISSING_SITE_NAME',
+          description: 'NEXT_PUBLIC_SITE_NAME environment variable is missing',
+          severity: 'high',
+          fix: 'injectDefaultSiteName',
+          data: { 
+            defaultValue: 'NextGen Sustainable Research Network',
+            phase: phase
+          }
+        });
+      }
+
+      // Check for other missing required variables
+      const otherMissingVars = validationResult.errors.filter(error => 
+        error.variable !== 'NEXT_PUBLIC_SITE_NAME'
+      );
+      
+      if (otherMissingVars.length > 0) {
+        this.issues.push({
+          type: 'MISSING_REQUIRED_ENV_VARS',
+          description: `Missing required environment variables: ${otherMissingVars.map(e => e.variable).join(', ')}`,
+          severity: 'high',
+          fix: 'generateEnvironmentFile',
+          data: { 
+            missingVars: otherMissingVars,
+            phase: phase
+          }
+        });
+      }
+    }
+  }
+
+  /**
+   * Check for missing environment files
+   */
+  async checkEnvironmentFiles() {
     const envExamplePath = path.join(this.projectRoot, '.env.example');
     const envLocalPath = path.join(this.projectRoot, '.env.local');
+    const envLocalExamplePath = path.join(this.projectRoot, '.env.local.example');
     
+    // Check if we have example files but no local environment file
     if (fs.existsSync(envExamplePath) && !fs.existsSync(envLocalPath)) {
       this.issues.push({
         type: 'MISSING_ENV_LOCAL',
         description: 'Missing .env.local file (found .env.example)',
         severity: 'medium',
         fix: 'createEnvLocal'
+      });
+    }
+
+    if (fs.existsSync(envLocalExamplePath) && !fs.existsSync(envLocalPath)) {
+      this.issues.push({
+        type: 'MISSING_ENV_LOCAL_FROM_EXAMPLE',
+        description: 'Missing .env.local file (found .env.local.example)',
+        severity: 'medium',
+        fix: 'createEnvLocalFromExample'
+      });
+    }
+
+    // Check if no environment files exist at all
+    const hasAnyEnvFile = [
+      '.env.local',
+      '.env.production',
+      '.env'
+    ].some(file => fs.existsSync(path.join(this.projectRoot, file)));
+
+    if (!hasAnyEnvFile) {
+      this.issues.push({
+        type: 'NO_ENVIRONMENT_FILES',
+        description: 'No environment files found',
+        severity: 'high',
+        fix: 'createDefaultEnvironmentFiles'
       });
     }
   }
@@ -344,6 +430,18 @@ class DeploymentAutoFix {
             break;
           case 'createEnvLocal':
             await this.createEnvLocal();
+            break;
+          case 'createEnvLocalFromExample':
+            await this.createEnvLocalFromExample();
+            break;
+          case 'createDefaultEnvironmentFiles':
+            await this.createDefaultEnvironmentFiles();
+            break;
+          case 'injectDefaultSiteName':
+            await this.injectDefaultSiteName(issue.data);
+            break;
+          case 'generateEnvironmentFile':
+            await this.generateEnvironmentFile(issue.data);
             break;
           case 'reportTypeScriptErrors':
             await this.reportTypeScriptErrors(issue.data);
@@ -502,6 +600,279 @@ class DeploymentAutoFix {
       this.fixes.push('Created .env.local from .env.example template');
       console.log('  ⚠️  Please update .env.local with your actual environment values');
     }
+  }
+
+  /**
+   * Create .env.local from .env.local.example
+   */
+  async createEnvLocalFromExample() {
+    const envLocalExamplePath = path.join(this.projectRoot, '.env.local.example');
+    const envLocalPath = path.join(this.projectRoot, '.env.local');
+    
+    if (fs.existsSync(envLocalExamplePath)) {
+      fs.copyFileSync(envLocalExamplePath, envLocalPath);
+      this.fixes.push('Created .env.local from .env.local.example template');
+      console.log('  ⚠️  Please update .env.local with your actual environment values');
+    }
+  }
+
+  /**
+   * Create default environment files for both simple and full deployment
+   */
+  async createDefaultEnvironmentFiles() {
+    let envConfig;
+    try {
+      envConfig = require('./env-config');
+    } catch (error) {
+      console.log('  ⚠️  Environment configuration module not available, creating basic files');
+      await this.createBasicEnvironmentFiles();
+      return;
+    }
+
+    // Detect current deployment phase
+    const phase = envConfig.detectDeploymentPhase(process.env);
+    
+    // Generate environment file for current phase
+    const envFilePath = path.join(this.projectRoot, '.env.local');
+    const envContent = this.generateEnvironmentContent(phase, envConfig);
+    
+    fs.writeFileSync(envFilePath, envContent);
+    this.fixes.push(`Created .env.local with ${phase} deployment configuration`);
+    
+    // Also create .env.local.example for reference
+    const examplePath = path.join(this.projectRoot, '.env.local.example');
+    fs.writeFileSync(examplePath, envContent);
+    this.fixes.push('Created .env.local.example as template');
+    
+    console.log(`  ✅ Created environment files for ${phase} deployment`);
+    console.log('  ⚠️  Please update the placeholder values with your actual configuration');
+  }
+
+  /**
+   * Inject default NEXT_PUBLIC_SITE_NAME value
+   */
+  async injectDefaultSiteName(data) {
+    const envLocalPath = path.join(this.projectRoot, '.env.local');
+    const defaultValue = data.defaultValue || 'NextGen Sustainable Research Network';
+    
+    let envContent = '';
+    
+    // Read existing .env.local if it exists
+    if (fs.existsSync(envLocalPath)) {
+      envContent = fs.readFileSync(envLocalPath, 'utf8');
+      
+      // Check if NEXT_PUBLIC_SITE_NAME is already set (but empty or commented)
+      if (envContent.includes('NEXT_PUBLIC_SITE_NAME')) {
+        // Replace existing line
+        envContent = envContent.replace(
+          /^#?\s*NEXT_PUBLIC_SITE_NAME\s*=.*$/m,
+          `NEXT_PUBLIC_SITE_NAME="${defaultValue}"`
+        );
+      } else {
+        // Add to end of file
+        envContent += `\n# Site Configuration\nNEXT_PUBLIC_SITE_NAME="${defaultValue}"\n`;
+      }
+    } else {
+      // Create new file with default site name
+      envContent = `# Environment Configuration
+# Generated by auto-fix on ${new Date().toISOString()}
+
+# Site Configuration
+NEXT_PUBLIC_SITE_NAME="${defaultValue}"
+
+# Base URL (will be auto-generated by Vercel if not set)
+NEXT_PUBLIC_BASE_URL="https://your-app.vercel.app"
+`;
+    }
+    
+    // Backup existing file if it exists
+    if (fs.existsSync(envLocalPath)) {
+      const backupPath = `${envLocalPath}.backup.${Date.now()}`;
+      fs.copyFileSync(envLocalPath, backupPath);
+      this.backups.push({ original: envLocalPath, backup: backupPath });
+    }
+    
+    fs.writeFileSync(envLocalPath, envContent);
+    this.fixes.push(`Injected default NEXT_PUBLIC_SITE_NAME: "${defaultValue}"`);
+    console.log(`  ✅ Set NEXT_PUBLIC_SITE_NAME to "${defaultValue}"`);
+  }
+
+  /**
+   * Generate comprehensive environment file with missing variables
+   */
+  async generateEnvironmentFile(data) {
+    let envConfig;
+    try {
+      envConfig = require('./env-config');
+    } catch (error) {
+      console.log('  ⚠️  Environment configuration module not available');
+      return;
+    }
+
+    const phase = data.phase || 'simple';
+    const envLocalPath = path.join(this.projectRoot, '.env.local');
+    
+    // Read existing environment content
+    let existingEnv = {};
+    if (fs.existsSync(envLocalPath)) {
+      const existingContent = fs.readFileSync(envLocalPath, 'utf8');
+      existingContent.split('\n').forEach(line => {
+        const match = line.match(/^([^#][^=]+)="?([^"]*)"?$/);
+        if (match) {
+          existingEnv[match[1].trim()] = match[2];
+        }
+      });
+    }
+    
+    // Generate complete environment content
+    const envContent = this.generateEnvironmentContent(phase, envConfig, existingEnv);
+    
+    // Backup existing file if it exists
+    if (fs.existsSync(envLocalPath)) {
+      const backupPath = `${envLocalPath}.backup.${Date.now()}`;
+      fs.copyFileSync(envLocalPath, backupPath);
+      this.backups.push({ original: envLocalPath, backup: backupPath });
+    }
+    
+    fs.writeFileSync(envLocalPath, envContent);
+    this.fixes.push(`Generated comprehensive environment file for ${phase} deployment`);
+    
+    // List the variables that were added
+    const addedVars = data.missingVars.map(v => v.variable).join(', ');
+    console.log(`  ✅ Added missing environment variables: ${addedVars}`);
+    console.log('  ⚠️  Please update placeholder values with your actual configuration');
+  }
+
+  /**
+   * Generate environment file content with proper documentation
+   */
+  generateEnvironmentContent(phase, envConfig, existingEnv = {}) {
+    const config = envConfig.ENV_CONFIGS[phase];
+    const descriptions = envConfig.ENV_VARIABLE_DESCRIPTIONS;
+    const timestamp = new Date().toISOString();
+    
+    let content = `# Environment Configuration for ${config.description}
+# Generated by auto-fix on ${timestamp}
+# Phase: ${phase}
+#
+# Instructions:
+# 1. Update placeholder values with your actual configuration
+# 2. For Vercel deployment, set these variables in your Vercel dashboard
+# 3. Some variables (marked with *) are auto-provided by Vercel
+
+`;
+
+    // Add required variables
+    content += '# Required Variables\n';
+    config.required.forEach(varName => {
+      const desc = descriptions[varName];
+      const existingValue = existingEnv[varName];
+      
+      content += `# ${desc?.description || 'Required environment variable'}\n`;
+      if (desc?.setupInstructions) {
+        content += `# Setup: ${desc.setupInstructions}\n`;
+      }
+      if (desc?.vercelAutoProvided) {
+        content += '# * Auto-provided by Vercel\n';
+      }
+      
+      let value = existingValue || desc?.defaultValue || 'your-value-here';
+      
+      // Special handling for specific variables
+      if (varName === 'NEXT_PUBLIC_BASE_URL' && !existingValue) {
+        value = 'https://your-app.vercel.app';
+      } else if (varName === 'NEXT_PUBLIC_SITE_NAME' && !existingValue) {
+        value = 'NextGen Sustainable Research Network';
+      } else if (varName === 'DATABASE_URL' && !existingValue) {
+        value = 'postgresql://username:password@host:5432/database_name';
+      } else if (varName === 'NEXTAUTH_SECRET' && !existingValue) {
+        value = 'your-nextauth-secret-key-generate-with-openssl-rand-base64-32';
+      }
+      
+      content += `${varName}="${value}"\n\n`;
+    });
+
+    // Add feature flags
+    content += '# Feature Flags\n';
+    Object.entries(config.features).forEach(([key, value]) => {
+      const existingValue = existingEnv[key];
+      content += `${key}="${existingValue || value}"\n`;
+    });
+    content += '\n';
+
+    // Add optional variables
+    if (config.optional.length > 0) {
+      content += '# Optional Variables\n';
+      config.optional.forEach(varName => {
+        const desc = descriptions[varName];
+        const existingValue = existingEnv[varName];
+        
+        content += `# ${desc?.description || 'Optional environment variable'}\n`;
+        if (desc?.setupInstructions) {
+          content += `# Setup: ${desc.setupInstructions}\n`;
+        }
+        
+        if (existingValue) {
+          content += `${varName}="${existingValue}"\n`;
+        } else {
+          content += `# ${varName}="your-value-here"\n`;
+        }
+        content += '\n';
+      });
+    }
+
+    // Add deployment-specific notes
+    if (phase === 'simple') {
+      content += `# Simple Deployment Notes:
+# - Database features are disabled
+# - Authentication is disabled  
+# - Search and AI features are disabled
+# - Only basic site functionality is enabled
+# - To enable full features, change feature flags above to "true"
+`;
+    } else {
+      content += `# Full Deployment Notes:
+# - All features are enabled
+# - Database configuration is required
+# - Authentication setup is required
+# - Optional services (AI, media, search) can be disabled by setting feature flags to "false"
+`;
+    }
+
+    return content;
+  }
+
+  /**
+   * Create basic environment files when env-config is not available
+   */
+  async createBasicEnvironmentFiles() {
+    const envLocalPath = path.join(this.projectRoot, '.env.local');
+    
+    const basicContent = `# Basic Environment Configuration
+# Generated by auto-fix on ${new Date().toISOString()}
+
+# Site Configuration
+NEXT_PUBLIC_SITE_NAME="NextGen Sustainable Research Network"
+NEXT_PUBLIC_BASE_URL="https://your-app.vercel.app"
+
+# Feature Flags (Simple Deployment)
+NEXT_PUBLIC_ENABLE_CMS="false"
+NEXT_PUBLIC_ENABLE_AUTH="false"
+NEXT_PUBLIC_ENABLE_SEARCH="false"
+NEXT_PUBLIC_ENABLE_AI="false"
+NEXT_PUBLIC_ENABLE_MEDIA="false"
+
+# Optional: Google Analytics
+# NEXT_PUBLIC_GA_ID="G-XXXXXXXXXX"
+
+# Instructions:
+# 1. Update placeholder values with your actual configuration
+# 2. For Vercel deployment, set these variables in your Vercel dashboard
+# 3. To enable full features, change feature flags to "true" and add database configuration
+`;
+
+    fs.writeFileSync(envLocalPath, basicContent);
+    this.fixes.push('Created basic .env.local configuration');
   }
 
   /**

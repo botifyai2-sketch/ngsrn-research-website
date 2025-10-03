@@ -1,0 +1,290 @@
+name: Environment Monitoring
+
+on:
+  # Run on deployment events
+  deployment_status:
+  
+  # Run on schedule (every 6 hours)
+  schedule:
+    - cron: '0 */6 * * *'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to monitor'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - preview
+          - development
+      check_type:
+        description: 'Type of check to perform'
+        required: true
+        default: 'health'
+        type: choice
+        options:
+          - health
+          - drift
+          - alerts
+          - full
+
+jobs:
+  environment-monitoring:
+    name: Monitor Environment Configuration
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'ngsrn-website/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: ngsrn-website
+        run: npm ci
+
+      - name: Set monitoring target
+        id: target
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            ENV="${{ github.event.inputs.environment }}"
+            CHECK_TYPE="${{ github.event.inputs.check_type }}"
+          elif [ "${{ github.event_name }}" = "deployment_status" ]; then
+            ENV="${{ github.event.deployment_status.environment }}"
+            CHECK_TYPE="health"
+          else
+            ENV="production"
+            CHECK_TYPE="health"
+          fi
+          
+          case $ENV in
+            production)
+              URL="${{ secrets.PRODUCTION_URL || 'https://ngsrn.vercel.app' }}"
+              ;;
+            preview)
+              URL="${{ github.event.deployment_status.target_url || 'https://ngsrn-preview.vercel.app' }}"
+              ;;
+            development)
+              URL="http://localhost:3000"
+              ;;
+            *)
+              URL="https://ngsrn.vercel.app"
+              ;;
+          esac
+          
+          echo "environment=$ENV" >> $GITHUB_OUTPUT
+          echo "check_type=$CHECK_TYPE" >> $GITHUB_OUTPUT
+          echo "target_url=$URL" >> $GITHUB_OUTPUT
+
+      - name: Wait for deployment (if applicable)
+        if: github.event_name == 'deployment_status'
+        run: |
+          echo "Waiting for deployment to be ready..."
+          sleep 30
+
+      - name: Run Environment Health Check
+        if: steps.target.outputs.check_type == 'health' || steps.target.outputs.check_type == 'full'
+        working-directory: ngsrn-website
+        env:
+          MONITORING_BASE_URL: ${{ steps.target.outputs.target_url }}
+        run: |
+          echo "🏥 Running health check for ${{ steps.target.outputs.environment }}"
+          echo "Target URL: ${{ steps.target.outputs.target_url }}"
+          
+          # Run health check with CI mode
+          node scripts/env-monitoring.js health --ci --verbose --json > health-report.json
+          
+          # Display results
+          echo "Health check completed successfully"
+          cat health-report.json
+
+      - name: Run Configuration Drift Check
+        if: steps.target.outputs.check_type == 'drift' || steps.target.outputs.check_type == 'full'
+        working-directory: ngsrn-website
+        env:
+          MONITORING_BASE_URL: ${{ steps.target.outputs.target_url }}
+        run: |
+          echo "🔄 Running drift check for ${{ steps.target.outputs.environment }}"
+          
+          # Run drift check
+          node scripts/env-monitoring.js drift --ci --json > drift-report.json || true
+          
+          # Display results
+          echo "Drift check completed"
+          cat drift-report.json
+
+      - name: Run Alerts Check
+        if: steps.target.outputs.check_type == 'alerts' || steps.target.outputs.check_type == 'full'
+        working-directory: ngsrn-website
+        env:
+          MONITORING_BASE_URL: ${{ steps.target.outputs.target_url }}
+        run: |
+          echo "🚨 Running alerts check for ${{ steps.target.outputs.environment }}"
+          
+          # Run alerts check
+          node scripts/env-monitoring.js alerts --ci --json > alerts-report.json || true
+          
+          # Display results
+          echo "Alerts check completed"
+          cat alerts-report.json
+
+      - name: Validate Environment Configuration
+        working-directory: ngsrn-website
+        env:
+          # Set environment variables for validation
+          NEXT_PUBLIC_BASE_URL: ${{ steps.target.outputs.target_url }}
+          NEXT_PUBLIC_SITE_NAME: "NextGen Sustainable Research Network"
+          NODE_ENV: ${{ steps.target.outputs.environment == 'production' && 'production' || 'development' }}
+        run: |
+          echo "✅ Running environment validation"
+          
+          # Run local validation
+          node scripts/env-monitoring.js validate --ci
+
+      - name: Upload monitoring reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: monitoring-reports-${{ steps.target.outputs.environment }}-${{ github.run_number }}
+          path: |
+            ngsrn-website/health-report.json
+            ngsrn-website/drift-report.json
+            ngsrn-website/alerts-report.json
+          retention-days: 30
+
+      - name: Send Slack notification on failure
+        if: failure() && github.event_name != 'workflow_dispatch'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: failure
+          channel: '#alerts'
+          text: |
+            🚨 Environment monitoring failed for ${{ steps.target.outputs.environment }}
+            
+            Environment: ${{ steps.target.outputs.environment }}
+            Target URL: ${{ steps.target.outputs.target_url }}
+            Check Type: ${{ steps.target.outputs.check_type }}
+            
+            Please check the workflow logs for details.
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Send Slack notification on success
+        if: success() && github.event_name == 'schedule'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: success
+          channel: '#monitoring'
+          text: |
+            ✅ Scheduled environment monitoring completed successfully
+            
+            Environment: ${{ steps.target.outputs.environment }}
+            Target URL: ${{ steps.target.outputs.target_url }}
+            
+            All environment checks passed.
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  continuous-monitoring:
+    name: Continuous Environment Monitoring
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.check_type == 'continuous'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'ngsrn-website/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: ngsrn-website
+        run: npm ci
+
+      - name: Run continuous monitoring
+        working-directory: ngsrn-website
+        env:
+          MONITORING_BASE_URL: ${{ github.event.inputs.environment == 'production' && secrets.PRODUCTION_URL || 'https://ngsrn-preview.vercel.app' }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        timeout-minutes: 60
+        run: |
+          echo "🔄 Starting continuous monitoring for 1 hour"
+          echo "Environment: ${{ github.event.inputs.environment }}"
+          echo "Target URL: $MONITORING_BASE_URL"
+          
+          # Run continuous monitoring with webhook notifications
+          node scripts/env-monitoring.js monitor \
+            --interval 300 \
+            --webhook "$SLACK_WEBHOOK_URL" \
+            --ci
+
+  security-scan:
+    name: Security Configuration Scan
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.check_type == 'full'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'ngsrn-website/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: ngsrn-website
+        run: npm ci
+
+      - name: Scan for security issues
+        working-directory: ngsrn-website
+        run: |
+          echo "🔒 Running security configuration scan"
+          
+          # Check for common security misconfigurations
+          echo "Checking for exposed secrets..."
+          
+          # Check environment files for potential secrets
+          find . -name ".env*" -not -path "./node_modules/*" | while read file; do
+            if [ -f "$file" ]; then
+              echo "Checking $file for security issues..."
+              
+              # Check for weak secrets
+              if grep -q "secret.*=.*123\|password.*=.*123\|key.*=.*test" "$file" 2>/dev/null; then
+                echo "⚠️ Weak secrets detected in $file"
+              fi
+              
+              # Check for placeholder values in production files
+              if [[ "$file" == *".env.production"* ]] && grep -q "your-\|placeholder\|example" "$file" 2>/dev/null; then
+                echo "⚠️ Placeholder values detected in production file $file"
+              fi
+            fi
+          done
+          
+          echo "Security scan completed"
+
+      - name: Check for environment variable leaks
+        run: |
+          echo "🔍 Checking for potential environment variable leaks"
+          
+          # Check for hardcoded secrets in source code
+          if grep -r "NEXTAUTH_SECRET\|DATABASE_URL\|GEMINI_API_KEY" ngsrn-website/src/ --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" | grep -v "process.env"; then
+            echo "⚠️ Potential hardcoded secrets found in source code"
+            exit 1
+          fi
+          
+          echo "No hardcoded secrets detected"

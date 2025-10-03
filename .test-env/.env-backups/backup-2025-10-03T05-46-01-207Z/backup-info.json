@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-10-03T05-46-01-207Z",
+  "files": [
+    ".env.local",
+    ".env.production",
+    ".env.simple",
+    ".env",
+    ".env.example"
+  ],
+  "path": "C:\\Users\\Pc\\Downloads\\NextGen\\ngsrn-website\\.test-env\\.env-backups\\backup-2025-10-03T05-46-01-207Z",
+  "description": "CLI test backup"
+}

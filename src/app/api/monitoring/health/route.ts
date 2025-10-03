@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { envMonitoring } from '@/lib/env-monitoring';
 
 export async function GET(_request: NextRequest) {
   try {
@@ -23,7 +24,8 @@ export async function GET(_request: NextRequest) {
           status: getMemoryStatus()
         },
         environment: await checkEnvironmentVariables(),
-        features: checkFeatureFlags()
+        features: checkFeatureFlags(),
+        environmentMonitoring: await checkEnvironmentMonitoring()
       }
     };
 
@@ -182,4 +184,23 @@ async function checkExternalServices(): Promise<Record<string, string>> {
   }
 
   return services;
+}
+
+async function checkEnvironmentMonitoring(): Promise<{ status: string; score?: number; alerts?: number; drift?: boolean }> {
+  try {
+    const healthStatus = await envMonitoring.generateHealthStatus();
+    const activeAlerts = healthStatus.alerts.filter(a => !a.resolvedAt);
+    
+    return {
+      status: healthStatus.overall,
+      score: healthStatus.score,
+      alerts: activeAlerts.length,
+      drift: healthStatus.drift.detected
+    };
+  } catch (error) {
+    console.error('Environment monitoring check failed:', error);
+    return {
+      status: 'error'
+    };
+  }
 }
