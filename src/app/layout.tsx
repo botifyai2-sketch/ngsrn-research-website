@@ -35,7 +35,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 // Get environment configuration
-const envConfig = getEnvironmentConfig();
+const envConfig = await getEnvironmentConfig();
 
 export const metadata: Metadata = {
   title: envConfig.siteName,
